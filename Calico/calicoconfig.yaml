@@ -1,0 +1,28 @@
+---
+apiVersion: projectcalico.org/v3
+kind: BGPConfiguration
+metadata:
+  name: default
+spec:
+  logSeverityScreen: Info
+  nodeToNodeMeshEnabled: false
+  asNumber: 1000
+---
+apiVersion: projectcalico.org/v3
+kind: BGPPeer
+metadata:
+  name: gobgp-master
+spec:
+  node: master
+  peerIP: 10.103.28.63 
+  asNumber: 1000
+---
+apiVersion: projectcalico.org/v3
+kind: BGPPeer
+metadata:
+  name: gobgp-intracluster
+spec:
+  node: worker
+  peerIP: 10.15.99.1
+  asNumber: 1000
+---
